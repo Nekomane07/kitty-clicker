@@ -42,7 +42,7 @@ valueUpgrade.addEventListener("click", function() {
   if (money >= valuePrice) {
     cupcakeValue += 1
     money -= valuePrice;
-    valuePrice = Math.round(employeePrice*2);
+    valuePrice = Math.round(valuePrice*2);
     valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
     moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   }
