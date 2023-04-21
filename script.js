@@ -33,7 +33,7 @@ function myTimer() {
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
-  income.innerHTML = 'Income: ' + Math.floor(((mpc/4)*(mps*employees)*100))/100 + '$'
+  income.innerHTML = 'Income: ' + Math.floor( ( cupcakeValue*((mpc/4)*(mps*employees))*100) )/100 + '$'
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
 }
 
