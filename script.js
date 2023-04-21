@@ -90,7 +90,7 @@ business.addEventListener("click", function() {
 
 sell.addEventListener("click", function() {
   money += cupcakes*cupcakeValue;
-  moneyDisplay.innerHTML = 'Cash: ' + Math.floor(cupcakes) + '$';
+  moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   cupcakes = 0
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes);
 }​);​
