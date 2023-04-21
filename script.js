@@ -31,7 +31,7 @@ function myTimer() {
 
   cupcakes += (mpc/4)*(mps * employees)
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes)
-  moneyDisplay.innerHTML = 'Cash: ' + Math.floor(money) + '$';
+  moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
   income.innerHTML = 'Income: ' + Math.floor(((mpc/4)*(mps*employees)*100))/100 + '$'
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
@@ -44,7 +44,7 @@ valueUpgrade.addEventListener("click", function() {
     money -= valuePrice;
     valuePrice = Math.round(employeePrice*2);
     valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
-    moneyDisplay.innerHTML = 'Cash: ' + Math.floor(money) + '$';
+    moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   }
 }​);​
 
@@ -55,7 +55,7 @@ employments.addEventListener("click", function() {
       money -= employeePrice;
       employeePrice = Math.round(employeePrice*1.5);
       employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
-      moneyDisplay.innerHTML = 'Cash: ' + Math.floor(money) + '$';
+      moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
     }
   }
 }​);​
@@ -84,7 +84,7 @@ business.addEventListener("click", function() {
       money -= businessPrice;
       businessPrice = Math.round(businessPrice*2);
       business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
-      moneyDisplay.innerHTML = 'Cash: ' + Math.floor(money) + '$'; 
+      moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$'; 
   }
 }​);​
 
