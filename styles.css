@@ -33,7 +33,7 @@ body {
   background-image: URL(https://i.ibb.co/FDFTSNT/Hello-Kitty.png);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 90%;
+  background-size: 95%;
   outline: none;
   border: none;
 }
@@ -61,7 +61,7 @@ body {
 }
 
 #statsDisplay {
-  position: absoulte;
+  position: absolute;
   text-align: center;
   margin-top: 2vh;
   margin-left: 70vw;
