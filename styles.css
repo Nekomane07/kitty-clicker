@@ -61,10 +61,11 @@ body {
 }
 
 #statsDisplay {
+  height: 90vh;
   position: absolute;
   text-align: center;
   margin-top: 2vh;
-  margin-left: 80vw;
+  margin-left: 75vw;
   background-color: purple;
   opacity: 50%;
   border-radius: 40px;
