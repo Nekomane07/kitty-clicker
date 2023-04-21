@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: black;
+  background-color: black;
+  background-image: URL(https://media0.giphy.com/media/11fIOE3vkIPdIY/giphy.gif);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#clicker {
+  margin-right: 3vw;
+  border-radius: 100%;
+  aspect-ratio: 1;
+  height: 44vh;
+  background-color: transparent;
+  background-image: URL(https://i.ibb.co/FDFTSNT/Hello-Kitty.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 75%;
+  outline: none;
+  border: none;
+}
+
+#clicker:hover {
+  cursor: pointer;
+}
+
+#cupcakeDisplay {
+  color: hotpink;
+  opacity: 100%;
+  font-family: cursive;
+}
+
+#income {
+  color: pink;
+  font-family: cursive;
+}
+
+#moneyDisplay {
+  color: green;
+  font-family: cursive;
+}
+
+#statsDisplay {
+  text-align: center;
+  margin-top: 2vh;
+  margin-left: 80vw;
+  background-color: purple;
+  opacity: 50%;
+  width: 15%;
+  border-radius: 40px;
+  border: 2px solid black;
+}
+
+#trade {
+  aspect-ratio: 4;
+  width: 75%;
+  border-radius: 40px;
+  cursor: pointer;
+  background-color: darkblue;
+  outline: none;
+  border: 2px solid black;
+  color: red;
+  font-family: cursive;
+  font-size: 100%;
+  font-weight: 1000%;
+}
+  #trade:hover {
+    background-color: blueviolet;
+  }
