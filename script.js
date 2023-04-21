@@ -1,4 +1,3 @@
-
 var clicker = document.getElementById('clicker')
 var investment = document.getElementById('investment')
 var convert = document.getElementById('convert')
@@ -21,6 +20,27 @@ let employeePrice = 500
 let valuePrice = 10000
 let interval = 300
 let employees = 0
+
+
+
+
+
+const resizeOps = () => {
+  document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
+};
+
+resizeOps();
+window.addEventListener("resize", resizeOps);
+
+
+
+
+
+
+
+
+
+
 
 function myTimer() {
   if (mps == 0) {

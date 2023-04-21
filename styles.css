@@ -3,6 +3,7 @@
 }
 
 body {
+  height: calc(var(--vh, 1vh) * 100);
   margin: 0;
   font-family: system-ui, sans-serif;
   color: black;
@@ -24,18 +25,20 @@ body {
 }
 
 #clicker {
+  overflow: visible;
   margin-right: 3vw;
-  border-radius: 100%;
   aspect-ratio: 1;
-  height: 44vh;
+  height: 40vh;
   background-color: transparent;
   background-image: URL(https://i.ibb.co/FDFTSNT/Hello-Kitty.png);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 75%;
+  background-size: 90%;
   outline: none;
   border: none;
 }
+
+
 
 #clicker:hover {
   cursor: pointer;
@@ -58,12 +61,12 @@ body {
 }
 
 #statsDisplay {
+  position: absoulte;
   text-align: center;
   margin-top: 2vh;
-  margin-left: 80vw;
+  margin-left: 70vw;
   background-color: purple;
   opacity: 50%;
-  width: 15%;
   border-radius: 40px;
   border: 2px solid black;
 }
