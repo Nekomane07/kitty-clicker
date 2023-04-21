@@ -96,5 +96,3 @@ sell.addEventListener("click", function() {
 }​);​
 
 setInterval(myTimer, interval);
-
-// Program employments 
