@@ -23,6 +23,12 @@ let interval = 300
 let employees = 0
 
 function myTimer() {
+  if (mps == 0) {
+    employments.style.opacity = '50%'
+  } else {
+    employments.style.opacity = '100%'
+  }
+
   cupcakes += (mpc/4)*(mps * employees)
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor(money) + '$';
@@ -43,12 +49,14 @@ valueUpgrade.addEventListener("click", function() {
 }​);​
 
 employments.addEventListener("click", function() {
-  if (money >= employeePrice) {
-    employees += 1
-    money -= employeePrice;
-    employeePrice = Math.round(employeePrice*1.5);
-    employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
-    moneyDisplay.innerHTML = 'Cash: ' + Math.floor(money) + '$';
+  if (mps > 0) {
+    if (money >= employeePrice) {
+      employees += 1
+      money -= employeePrice;
+      employeePrice = Math.round(employeePrice*1.5);
+      employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
+      moneyDisplay.innerHTML = 'Cash: ' + Math.floor(money) + '$';
+    }
   }
 }​);​
 
