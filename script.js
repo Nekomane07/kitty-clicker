@@ -18,7 +18,7 @@ let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 10000
-let interval = 300
+let interval = 1000
 let employees = 0
 
 
@@ -36,13 +36,8 @@ window.addEventListener("resize", resizeOps);
 
 
 
-
-
-
-
-
-
-function myTimer() {
+var  myTimer = function() {
+  clearInterval(loop);
   if (mps == 0) {
     employments.style.opacity = '50%'
   } else {
@@ -55,8 +50,9 @@ function myTimer() {
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
   income.innerHTML = 'Income: ' + Math.floor( ( cupcakeValue*((mpc/4)*(mps*employees))*100) )/100 + '$'
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
+    loop = setInterval(myTimer, interval);
 }
-
+var loop = setInterval(myTimer, loop);
 
 valueUpgrade.addEventListener("click", function() {
   if (money >= valuePrice) {
@@ -105,6 +101,8 @@ business.addEventListener("click", function() {
       businessPrice = Math.round(businessPrice*2);
       business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
       moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$'; 
+      interval -= 75
+      console.log(interval)
   }
 }​);​
 
@@ -114,7 +112,5 @@ sell.addEventListener("click", function() {
   cupcakes = 0
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes);
 }​);​
-
-setInterval(myTimer, interval);
 
 
