@@ -14,9 +14,9 @@ var prestigeDisplay = document.getElementById('prestigeDisplay')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
-let money = 10000
+let money = 0
 let mpc = 1
-let mps = 0
+let mps = 5
 let cupcakeNet = 0
 let prestigePrice = 100000
 let investmentPrice = 100
@@ -24,7 +24,7 @@ let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 0
+let employees = 1
 
 
 
@@ -53,8 +53,6 @@ if (mps == 0) {
     employments.style.border = '2px solid blue'
   }
 }
-
-
 if (money <= investmentPrice) {
   investment.style.border = '2px solid crimson'
 } else {
@@ -76,10 +74,19 @@ if (money <= valuePrice) {
   if (mps == 0) {
     employments.style.opacity = '50%'
     employments.disabled = true
+    employments.style.border = '2px solid crimson'
+  
   } else {
     employments.style.opacity = '100%'
     employments.disabled = false
+    if (money <= employeePrice) {
+      employments.style.border = '2px solid crimson'
+    } else {
+      employments.style.border = '2px solid blue'
+    }
   }
+
+
   if (cupcakeNet >= prestigePrice) {
     prestigeButton.disabled = false
   }
@@ -134,7 +141,11 @@ employments.addEventListener("click", function() {
       employeePrice = Math.round(employeePrice*1.5);
       employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
       moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
-      
+      if (money <= employeePrice) {
+        employments.style.border = '2px solid crimson'
+      } else {
+        employments.style.border = '2px solid blue'
+      }
     }
   
   }
@@ -143,11 +154,13 @@ employments.addEventListener("click", function() {
 
 clicker.addEventListener("click", function() {
 
+if (mps > 0) {
   if (money <= employeePrice) {
     employments.style.border = '2px solid crimson'
   } else {
     employments.style.border = '2px solid blue'
   }
+}
   if (money <= investmentPrice) {
     investment.style.border = '2px solid crimson'
   } else {
@@ -189,14 +202,21 @@ investment.addEventListener("click", function() {
 }​);​
 
 business.addEventListener("click", function() {
-  if (mps == 0) {
-    employments.style.opacity = '50%'
+if (mps == 0) {
+  employments.style.opacity = '50%'
+  employments.style.border = '2px solid crimson'
+} else {
+  employments.style.opacity = '100%'
+  if (money <= employeePrice) {
+    employments.style.border = '2px solid crimson'
   } else {
-    employments.style.opacity = '100%'
+    employments.style.border = '2px solid blue'
   }
-
-    if (money >= businessPrice){
-      mps += 1 + prestige
+}
+    if (money >= businessPrice) {
+      employments.style.opacity = '100%'
+      employments.disabled = false
+      mps += 1 + prestige;
       money -= businessPrice;
       businessPrice = Math.round(businessPrice*2);
       business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
@@ -208,7 +228,19 @@ business.addEventListener("click", function() {
       } else {
         business.style.border = '2px solid blue'
       } 
-  }
+      if (mps == 0) {
+        employments.style.opacity = '50%'
+        employments.style.border = '2px solid crimson'
+      } else {
+        employments.style.opacity = '100%'
+        if (money <= employeePrice) {
+          employments.style.border = '2px solid crimson'
+        } else {
+          employments.style.border = '2px solid blue'
+        }
+      }
+    }
+
 }​);​
 
 sell.addEventListener("click", function() {
