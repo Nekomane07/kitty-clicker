@@ -65,16 +65,24 @@ body {
 }
 
 #statsDisplay {
+  min-width: 17vw;
+  max-width: 20vw;
   height: 90vh;
+  overflow-y: scroll;
+    overflow-wrap: normal;
   position: absolute;
   text-align: center;
   margin-top: 2vh;
   margin-left: 75vw;
   background-color: purple;
-  opacity: 50%;
+  opacity: 75%;
   border-radius: 40px;
   border: 2px solid black;
   user-select: none;
+}
+
+#statsDisplay:hover {
+  width: max-content;
 }
 
 #trade {
@@ -101,14 +109,13 @@ body {
      #prestigeButton {
        font-size: medium;
        font-weight: 300;
-       margin-top: 20%;
        border-radius: 100%;
        aspect-ratio: 1;
-       width: 50%;
+       width: 75%;
        border: 2px solid black;
-      color: black;
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      user-select: none;
+       color: black;
+       font-family: monospace;
+       user-select: none;
      }
 
      #prestigeButton:disabled {
@@ -124,9 +131,23 @@ body {
     }
 
     #prestigeButton:hover:enabled {
+      cursor: pointer;
       background-color: gold;
     }
 
 button {
   user-select: none;
 }
+
+h1 {
+  margin-top: 10%;
+  margin-bottom: 0;
+  color: silver;
+}
+
+#prestigeDisplay {
+  color: gold;
+  font-family: monospace;
+  font-size: xx-large;
+}
+
