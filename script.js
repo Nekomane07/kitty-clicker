@@ -18,11 +18,11 @@ let money = 0
 let mpc = 1
 let mps = 0
 let cupcakeNet = 0
-let prestigePrice = 1000000
+let prestigePrice = 100
 let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
-let valuePrice = 10000
+let valuePrice = 100000
 let interval = 1000
 let employees = 0
 

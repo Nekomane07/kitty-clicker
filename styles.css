@@ -119,11 +119,12 @@ body {
      }
 
      #prestigeButton:disabled {
-       background-color: red;
+       background-color: darkred;
      }
 
      #prestigeButton:hover:disabled {
-       background-color: darkred;
+       background-color: red;
+       border: 2px solid darkred;
      }
 
      #prestigeButton:enabled {
@@ -133,6 +134,7 @@ body {
     #prestigeButton:hover:enabled {
       cursor: pointer;
       background-color: gold;
+      border: 2px solid goldenrod;
     }
 
 button {
