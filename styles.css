@@ -153,3 +153,45 @@ h1 {
   font-size: xx-large;
 }
 
+#investment {
+  background-color: lightblue;
+  border-radius: 40px;
+  border: 2px solid blue;
+} 
+#investment:hover {
+  background-color: lightsteelblue;
+}
+
+#business {
+  background-color: lightblue;
+  border-radius: 40px;
+  border: 2px solid blue;
+}
+#business:hover {
+  background-color: lightsteelblue;
+}
+
+#employments {
+  background-color: lightblue;
+  border-radius: 40px;
+  border: 2px solid blue;
+}
+
+#employments:hover {
+  background-color: lightsteelblue;
+}
+#employments:active {
+  background-color: lightblue;
+}
+#employments:disabled {
+  background-color: lightsteelblue;
+  border: 2px solid crimson;
+}
+#valueUpgrade {
+  background-color: lightblue;
+  border-radius: 40px;
+  border: 2px solid blue;
+}
+#valueUpgrade:hover {
+  background-color: lightsteelblue;
+}
