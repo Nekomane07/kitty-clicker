@@ -9,11 +9,14 @@ var employments = document.getElementById('employments')
 var valueUpgrade = document.getElementById('valueUpgrade')
 var title = document.getElementById('title')
 var sell = document.getElementById('trade')
+var prestigeButton = document.getElementById('prestigeButton')
+let prestige = 1
 let cupcakes = 0
 let cupcakeValue = 1
 let money = 0
 let mpc = 1
 let mps = 0
+let prestigePrice = 1000000
 let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
@@ -38,19 +41,33 @@ window.addEventListener("resize", resizeOps);
 
 var  myTimer = function() {
   clearInterval(loop);
+  prestigeButton.innerHTML = 'Prestige | ' + Math.floor(prestigePrice) + '$';
   if (mps == 0) {
     employments.style.opacity = '50%'
   } else {
     employments.style.opacity = '100%'
   }
+  if (money >= 100000000000) {
+    prestigeButton.disabled = false
+  }
+  else {
+    prestigeButton.disabled = true
+  }
 
-  cupcakes += (mpc/4)*(mps * employees)
+  cupcakes += (prestige**5)*((mpc/4)*(mps * employees))
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
-  income.innerHTML = 'Income: ' + Math.floor( ( cupcakeValue*((mpc/4)*(mps*employees))*100) )/100 + '$'
+  income.innerHTML = 'Income: ' + Math.floor( ( (prestige**5)*( cupcakeValue*((mpc/4)*(mps*employees))*100) ) )/100 + '$'
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
-    loop = setInterval(myTimer, interval);
+  loop = setInterval(myTimer, interval);
+  
+  // constant variables
+  investment.innerHTML = 'Cupcake Mix: ' + mpc + ' | ' + investmentPrice + '$';
+  employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
+  moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
+  valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
+  business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
 }
 var loop = setInterval(myTimer, loop);
 
@@ -80,7 +97,6 @@ clicker.addEventListener("click", function() {
   cupcakes += mpc;
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes);
   console.log(cupcakes)
-  investment.innerHTML = 'Cupcake Mix: ' + mpc + ' | ' + investmentPrice + '$';
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$'
 }​);​
 
@@ -95,6 +111,12 @@ investment.addEventListener("click", function() {
 }​);​
 
 business.addEventListener("click", function() {
+  if (mps == 0) {
+    employments.style.opacity = '50%'
+  } else {
+    employments.style.opacity = '100%'
+  }
+
     if (money >= businessPrice){
       mps += 1
       money -= businessPrice;
@@ -111,6 +133,34 @@ sell.addEventListener("click", function() {
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   cupcakes = 0
   cupcakeDisplay.innerHTML = 'Cupcakes: ' + Math.floor(cupcakes);
+  sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
 }​);​
 
 
+
+prestigeButton.addEventListener("click", function() {
+  prestige += 1
+  cupcakes = 0
+  cupcakeValue = 1
+  money = 0
+  mpc = 0
+  mps = 0
+  prestigePrice *= 1000;
+  investmentPrice = 100
+  businessPrice = 1000
+  employeePrice = 500
+  valuePrice = 10000
+  interval = 1000
+  employees = 0
+  sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
+}​);​
+  
+screen.addEventListener ("click", function() { 
+  investment.innerHTML = 'Cupcake Mix: ' + mpc + ' | ' + investmentPrice + '$';
+  employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
+  moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
+  valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
+  sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
+  business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
+  income.innerHTML = 'Income: ' + Math.floor( ( (prestige**5)*( cupcakeValue*((mpc/4)*(mps*employees))*100) ) )/100 + '$'
+});
