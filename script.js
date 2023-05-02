@@ -25,7 +25,7 @@ let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
 let employees = 0
-
+valueUpgrade.style.display = 'none'
 
 
 
@@ -95,7 +95,11 @@ if (money <= valuePrice) {
   }
 
   cupcakes += ((mpc/4)*(mps * employees))
+  if (cupcakeNet < prestigePrice) {
   cupcakeNet += ((mpc/4)*(mps * employees))
+  } else {
+    cupcakeNet = prestigePrice
+  }
   cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
@@ -136,7 +140,7 @@ employments.addEventListener("click", function() {
   
   if (mps > 0) {
     if (money >= employeePrice) {
-      employees += 1 + prestige
+      employees += 1;
       money -= employeePrice;
       employeePrice = Math.round(employeePrice*1.5);
       employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
@@ -179,7 +183,11 @@ if (mps > 0) {
 
   console.log(cupcakeNet)
   cupcakes += mpc;
+  if (cupcakeNet < prestigePrice) {
   cupcakeNet += mpc;
+  } else {
+    cupcakeNet = prestigePrice
+  }
   cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes);
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$'
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.floor(cupcakeNet) + '/' + prestigePrice;
@@ -187,7 +195,7 @@ if (mps > 0) {
 
 investment.addEventListener("click", function() {
     if (money >= investmentPrice) {
-    mpc = (Math.floor(( (mpc*(1.1 + prestige)))*100))/100;
+    mpc = (Math.floor(( (mpc*(1.1)))*100))/100;
     money -= investmentPrice;
     investmentPrice = Math.round(investmentPrice*(1.2 + prestige))
     investment.innerHTML = 'Cupcake Mix: ' + mpc + ' | ' + investmentPrice + '$';
@@ -216,7 +224,7 @@ if (mps == 0) {
     if (money >= businessPrice) {
       employments.style.opacity = '100%'
       employments.disabled = false
-      mps += 1 + prestige;
+      mps += 1;
       money -= businessPrice;
       businessPrice = Math.round(businessPrice*2);
       business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
@@ -280,7 +288,7 @@ sell.addEventListener("click", function() {
 prestigeButton.addEventListener("click", function() {
   prestige += 1
   cupcakes = 0
-  cupcakeValue = 1
+  cupcakeValue = prestige + 1
   money = 0
   mpc = prestige + 1
   mps = 0
