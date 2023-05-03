@@ -292,7 +292,7 @@ prestigeButton.addEventListener("click", function() {
   money = 0
   mpc = prestige + 1
   mps = 0
-  prestigePrice *= 1000;
+  prestigePrice *= 100;
   investmentPrice = 100
   businessPrice = 1000
   employeePrice = 500
