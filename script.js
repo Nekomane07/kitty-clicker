@@ -14,29 +14,20 @@ var prestigeDisplay = document.getElementById('prestigeDisplay')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
-let money = 0
+let money = 1500
 let mpc = 1
 let mps = 0
-let cupcakeNet = 0
+let cupcakeNet = 100000
 let prestigePrice = 100000
+let prestigePercent = 0
 let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
 let employees = 0
+
 valueUpgrade.style.display = 'none'
-
-
-
-const resizeOps = () => {
-  document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
-};
-
-resizeOps();
-window.addEventListener("resize", resizeOps);
-
-
 
 
 
@@ -47,23 +38,23 @@ console.log(cupcakeNet)
 
 
 if (mps == 0) {
-  if (money <= employeePrice) {
+  if (money < employeePrice) {
     employments.style.border = '2px solid crimson'
   } else {
     employments.style.border = '2px solid blue'
   }
 }
-if (money <= investmentPrice) {
+if (money < investmentPrice) {
   investment.style.border = '2px solid crimson'
 } else {
   investment.style.border = '2px solid blue'
 } 
-if (money <= businessPrice) {
+if (money < businessPrice) {
   business.style.border = '2px solid crimson'
 } else {
   business.style.border = '2px solid blue'
 } 
-if (money <= valuePrice) {
+if (money < valuePrice) {
   valueUpgrade.style.border = '2px solid crimson'
 } else {
   valueUpgrade.style.border = '2px solid blue'
@@ -79,7 +70,7 @@ if (money <= valuePrice) {
   } else {
     employments.style.opacity = '100%'
     employments.disabled = false
-    if (money <= employeePrice) {
+    if (money < employeePrice) {
       employments.style.border = '2px solid crimson'
     } else {
       employments.style.border = '2px solid blue'
@@ -103,7 +94,7 @@ if (money <= valuePrice) {
   cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
-  income.innerHTML = 'Income: ' + Math.floor(( cupcakeValue*((mpc/4)*(mps*employees))*100) )/100 + '$'
+  income.innerHTML = 'Income: ' + Math.floor(100*( cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) )*prestigePercent))/100 + '$'
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   loop = setInterval(myTimer, interval);
   
@@ -142,16 +133,18 @@ employments.addEventListener("click", function() {
     if (money >= employeePrice) {
       employees += 1;
       money -= employeePrice;
+
+      
+
       employeePrice = Math.round(employeePrice*1.5);
       employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
       moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
-      if (money <= employeePrice) {
-        employments.style.border = '2px solid crimson'
-      } else {
-        employments.style.border = '2px solid blue'
-      }
     }
-  
+    if (money < employeePrice) {
+      employments.style.border = '2px solid crimson'
+    } else {
+      employments.style.border = '2px solid blue'
+    }
   }
   
 }​);​
@@ -159,23 +152,25 @@ employments.addEventListener("click", function() {
 clicker.addEventListener("click", function() {
 
 if (mps > 0) {
-  if (money <= employeePrice) {
+  if (money < employeePrice) {
     employments.style.border = '2px solid crimson'
   } else {
     employments.style.border = '2px solid blue'
   }
+} else {
+  employments.style.border = '2px solid crimson'
 }
-  if (money <= investmentPrice) {
+  if (money < investmentPrice) {
     investment.style.border = '2px solid crimson'
   } else {
     investment.style.border = '2px solid blue'
   } 
-  if (money <= businessPrice) {
+  if (money < businessPrice) {
     business.style.border = '2px solid crimson'
   } else {
     business.style.border = '2px solid blue'
   } 
-  if (money <= valuePrice) {
+  if (money < valuePrice) {
     valueUpgrade.style.border = '2px solid crimson'
   } else {
     valueUpgrade.style.border = '2px solid blue'
@@ -287,10 +282,11 @@ sell.addEventListener("click", function() {
 
 prestigeButton.addEventListener("click", function() {
   prestige += 1
+  prestigePercent = (10*prestige)/100
   cupcakes = 0
   cupcakeValue = prestige + 1
-  money = 0
-  mpc = prestige + 1
+  money = 1500
+  mpc = 1
   mps = 0
   prestigePrice *= 100;
   investmentPrice = 100
@@ -304,22 +300,22 @@ prestigeButton.addEventListener("click", function() {
   prestigeButton.disabled = true
 
 
-  if (money <= employeePrice) {
+  if (money < employeePrice) {
     employments.style.border = '2px solid crimson'
   } else {
     employments.style.border = '2px solid blue'
   }
-  if (money <= investmentPrice) {
+  if (money < investmentPrice) {
     investment.style.border = '2px solid crimson'
   } else {
     investment.style.border = '2px solid blue'
   } 
-  if (money <= businessPrice) {
+  if (money < businessPrice) {
     business.style.border = '2px solid crimson'
   } else {
     business.style.border = '2px solid blue'
   } 
-  if (money <= valuePrice) {
+  if (money < valuePrice) {
     valueUpgrade.style.border = '2px solid crimson'
   } else {
     valueUpgrade.style.border = '2px solid blue'
@@ -334,8 +330,7 @@ screen.addEventListener ("click", function() {
   valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
-  income.innerHTML = 'Income: ' + Math.floor( ( ( cupcakeValue*((mpc/4)*(mps*employees))*100) ) )/100 + '$'
-
+  income.innerHTML = 'Income: ' + Math.floor(100*( cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) )*prestigePercent))/100 + '$'
 
   if (money <= employeePrice) {
     employments.style.border = '2px solid crimson'
