@@ -286,7 +286,7 @@ prestigeButton.addEventListener("click", function() {
   cupcakes = 0
   cupcakeValue = 1
   money = 0
-  mpc = 1
+  mpc = 1 + prestige
   mps = 0
   prestigePrice *= 100;
   investmentPrice = 100
