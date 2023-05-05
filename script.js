@@ -282,7 +282,7 @@ sell.addEventListener("click", function() {
 
 prestigeButton.addEventListener("click", function() {
   prestige += 1
-  prestigePercent = prestige/10
+  prestigePercent = prestige/.05
   cupcakes = 0
   cupcakeValue = 1
   money = 0
