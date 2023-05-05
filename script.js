@@ -14,7 +14,7 @@ var prestigeDisplay = document.getElementById('prestigeDisplay')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
-let money = 1500
+let money = 15000000
 let mpc = 1
 let mps = 0
 let cupcakeNet = 100000
@@ -33,7 +33,7 @@ valueUpgrade.style.display = 'none'
 
 var  myTimer = function() {
   clearInterval(loop);
-console.log(cupcakeNet)
+  console.log(Math.floor(1000*( cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) )*prestigePercent))/1000)
 
 
 
@@ -282,10 +282,10 @@ sell.addEventListener("click", function() {
 
 prestigeButton.addEventListener("click", function() {
   prestige += 1
-  prestigePercent = (10*prestige)/100
+  prestigePercent = prestige/100
   cupcakes = 0
-  cupcakeValue = prestige + 1
-  money = 1500
+  cupcakeValue = 1
+  money = 1500000
   mpc = 1
   mps = 0
   prestigePrice *= 100;
