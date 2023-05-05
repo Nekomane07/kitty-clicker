@@ -14,10 +14,10 @@ var prestigeDisplay = document.getElementById('prestigeDisplay')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
-let money = 15000000
+let money = 0
 let mpc = 1
 let mps = 0
-let cupcakeNet = 100000
+let cupcakeNet = 0
 let prestigePrice = 100000
 let prestigePercent = 0
 let investmentPrice = 100
@@ -225,8 +225,8 @@ if (mps == 0) {
       business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
       moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$'; 
       interval -= 75
-      console.log(interval)
-      if (money <= businessPrice) {
+      console.log('interval: ' + interval + 'ms')
+      if (money < businessPrice) {
         business.style.border = '2px solid crimson'
       } else {
         business.style.border = '2px solid blue'
@@ -236,7 +236,7 @@ if (mps == 0) {
         employments.style.border = '2px solid crimson'
       } else {
         employments.style.opacity = '100%'
-        if (money <= employeePrice) {
+        if (money < employeePrice) {
           employments.style.border = '2px solid crimson'
         } else {
           employments.style.border = '2px solid blue'
@@ -255,22 +255,22 @@ sell.addEventListener("click", function() {
 
 
 
-  if (money <= employeePrice) {
+  if (money < employeePrice) {
     employments.style.border = '2px solid crimson'
   } else {
     employments.style.border = '2px solid blue'
   }
-  if (money <= investmentPrice) {
+  if (money < investmentPrice) {
     investment.style.border = '2px solid crimson'
   } else {
     investment.style.border = '2px solid blue'
   } 
-  if (money <= businessPrice) {
+  if (money < businessPrice) {
     business.style.border = '2px solid crimson'
   } else {
     business.style.border = '2px solid blue'
   } 
-  if (money <= valuePrice) {
+  if (money < valuePrice) {
     valueUpgrade.style.border = '2px solid crimson'
   } else {
     valueUpgrade.style.border = '2px solid blue'
@@ -282,10 +282,10 @@ sell.addEventListener("click", function() {
 
 prestigeButton.addEventListener("click", function() {
   prestige += 1
-  prestigePercent = prestige/100
+  prestigePercent = prestige/10
   cupcakes = 0
   cupcakeValue = 1
-  money = 1500000
+  money = 0
   mpc = 1
   mps = 0
   prestigePrice *= 100;
