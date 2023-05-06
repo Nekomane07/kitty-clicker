@@ -33,7 +33,7 @@ valueUpgrade.style.display = 'none'
 
 var  myTimer = function() {
   clearInterval(loop);
-  console.log(Math.floor(1000*( cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) )*prestigePercent))/1000)
+  console.log(Math.floor(1000*( cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent))/1000)
 
 
 
@@ -85,7 +85,7 @@ if (money < valuePrice) {
     prestigeButton.disabled = true
   }
 
-  cupcakes += (cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) ))*prestigePercent
+  cupcakes += cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent)
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += ((mpc/4)*(mps * employees))
   } else {
