@@ -85,7 +85,7 @@ if (money < valuePrice) {
     prestigeButton.disabled = true
   }
 
-  cupcakes += (cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) ))*prestigePercent
+  cupcakes += (((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) ))*prestigePercent/100
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += ((mpc/4)*(mps * employees))
   } else {
@@ -94,7 +94,7 @@ if (money < valuePrice) {
   cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
-  income.innerHTML = 'Income: ' + Math.floor( ( 100* ( cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent ) ) ))/100 + '$'
+  income.innerHTML = 'Income: ' + Math.floor( ( 100* ( cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent ) ) )/100)/100 + '$' 
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   loop = setInterval(myTimer, interval);
   
@@ -282,9 +282,9 @@ sell.addEventListener("click", function() {
 
 prestigeButton.addEventListener("click", function() {
   prestige += 1
-  prestigePercent = prestige / 0.05
+  prestigePercent = prestige / 0.01
   cupcakes = 0
-  cupcakeValue = 2
+  cupcakeValue = prestige + 1
   money = 0
   mpc = 1 + prestige
   mps = 0
@@ -330,7 +330,7 @@ screen.addEventListener ("click", function() {
   valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
-  income.innerHTML = 'Income: ' + Math.floor( ( 100* ( cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent ) ) ))/100 + '$'
+  income.innerHTML = 'Income: ' + Math.floor( ( 100* ( cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent ) ) )/100)/100 + '$'
     if (money <= employeePrice) {
     employments.style.border = '2px solid crimson'
   } else {
