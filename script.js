@@ -14,18 +14,18 @@ var prestigeDisplay = document.getElementById('prestigeDisplay')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
-let money = 0
-let mpc = 1
-let mps = 0
-let cupcakeNet = 0
+let money = 0 //check
+let mpc = 1 //check
+let mps = 0 //check
+let cupcakeNet = 0 //check
 let prestigePrice = 100000
-let prestigePercent = 0
+let prestigePercent = 0 //check
 let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 0
+let employees = 0 //check
 let passiveIncome = 0
 let mixIncome = mpc
 let totalIncome = 0
@@ -45,7 +45,7 @@ totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/1
 var  myTimer = function() {
   clearInterval(loop);
   incomeTracker()
-console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
+console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
   if (money < employeePrice) {
