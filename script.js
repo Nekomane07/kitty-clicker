@@ -294,7 +294,7 @@ prestigeButton.addEventListener("click", function() {
   employeePrice = 500
   valuePrice = 10000
   interval = 1000
-  employees = 1
+  employees = 0
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.disabled = true
