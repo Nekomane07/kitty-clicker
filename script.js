@@ -18,7 +18,7 @@ let money = 0
 let mpc = 1
 let mps = 0
 let cupcakeNet = 0
-let prestigePrice = 1000000
+let prestigePrice = 100000
 let prestigePercent = 0
 let investmentPrice = 100
 let businessPrice = 1000
@@ -286,7 +286,7 @@ prestigeButton.addEventListener("click", function() {
   money = 0
   mpc = 1 + prestige
   mps = 0
-  prestigePrice *= 10;
+  prestigePrice *= 100;
   investmentPrice = 100
   businessPrice = 1000
   employeePrice = 500
