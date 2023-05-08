@@ -14,26 +14,38 @@ var prestigeDisplay = document.getElementById('prestigeDisplay')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
-let money = 0
-let mpc = 1
-let mps = 1 //check
-let cupcakeNet = 1000000 //check
-let prestigePrice = 1000000
-let prestigePercent = 0
+let money = 0 //check
+let mpc = 1 //check
+let mps = 0 //check
+let cupcakeNet = 0 //check
+let prestigePrice = 100000
+let prestigePercent = 0 //check
 let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 1 //check
+let employees = 0 //check
+let passiveIncome = 0
+let mixIncome = mpc
+let totalIncome = 0
+let percentIncome = 0
 
 valueUpgrade.style.display = 'none'
+
+var incomeTracker = function() {
+passiveIncome = Math.floor( 100*((mps * employees) / 4))/100
+mixIncome = Math.floor(100*(mpc/4 * (mps * employees) - passiveIncome))/100
+percentIncome = Math.floor(100*((mixIncome + passiveIncome)*prestigePercent))/100
+totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/100
+}
 
 
 
 var  myTimer = function() {
   clearInterval(loop);
-
+  incomeTracker()
+console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
   if (money < employeePrice) {
@@ -173,8 +185,6 @@ if (mps > 0) {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-
-  console.log(cupcakeNet)
   cupcakes += mpc;
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += mpc;
@@ -285,14 +295,14 @@ prestigeButton.addEventListener("click", function() {
   cupcakeValue = 1 + prestige
   money = 0
   mpc = 1 + prestige
-  mps = 1 //check
-  prestigePrice *= 100;
+  mps = 0
+  prestigePrice *= 10;
   investmentPrice = 100
   businessPrice = 1000
   employeePrice = 500
   valuePrice = 10000
   interval = 1000
-  employees = 1 //check
+  employees = 0
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.disabled = true
