@@ -16,8 +16,8 @@ let cupcakes = 0
 let cupcakeValue = 1
 let money = 0
 let mpc = 1
-let mps = 0
-let cupcakeNet = 0
+let mps = 1
+let cupcakeNet = 1000000
 let prestigePrice = 1000000
 let prestigePercent = 0
 let investmentPrice = 100
@@ -25,7 +25,7 @@ let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 0
+let employees = 1
 
 valueUpgrade.style.display = 'none'
 
@@ -33,8 +33,6 @@ valueUpgrade.style.display = 'none'
 
 var  myTimer = function() {
   clearInterval(loop);
-  console.log(Math.floor(1000*( cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) )*prestigePercent))/1000)
-
 
 
 if (mps == 0) {
@@ -85,7 +83,7 @@ if (money < valuePrice) {
     prestigeButton.disabled = true
   }
 
-  cupcakes += (cupcakeValue*((mpc/4)*(mps*employees) ) + ( cupcakeValue*((mpc/4)*(mps*employees)) ))*prestigePercent
+  cupcakes +=  (mpc/4)*(mps*employees) + ( (mpc/4)*(mps*employees) ) *prestigePercent
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += ((mpc/4)*(mps * employees))
   } else {
@@ -94,7 +92,7 @@ if (money < valuePrice) {
   cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
   title.innerHTML = Math.round(cupcakes) + ' - ' + 'Kitty Clicker'
-  income.innerHTML = 'Income: ' + Math.floor( ( 100* ( cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent ) ) ))/100 + '$'
+  income.innerHTML = 'Income: ' + Math.floor( ( 100* ( ( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent ) ) ))/100 + '$'
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   loop = setInterval(myTimer, interval);
   
@@ -282,19 +280,19 @@ sell.addEventListener("click", function() {
 
 prestigeButton.addEventListener("click", function() {
   prestige += 1
-  prestigePercent = prestige / 0.05
+  prestigePercent = (prestige / 0.05)/10
   cupcakes = 0
   cupcakeValue = 1 + prestige
   money = 0
   mpc = 1 + prestige
-  mps = 0
+  mps = 1
   prestigePrice *= 100;
   investmentPrice = 100
   businessPrice = 1000
   employeePrice = 500
   valuePrice = 10000
   interval = 1000
-  employees = 0
+  employees = 1
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.disabled = true
@@ -330,7 +328,6 @@ screen.addEventListener ("click", function() {
   valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
-  income.innerHTML = 'Income: ' + Math.floor( ( 100* ( cupcakeValue*( ( (mpc/4)*(mps*employees) ) + ( (mpc/4)*(mps*employees) ) *prestigePercent ) ) ))/100 + '$'
     if (money <= employeePrice) {
     employments.style.border = '2px solid crimson'
   } else {
