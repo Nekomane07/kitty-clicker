@@ -25,7 +25,7 @@ let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 1
+let employees = 0
 
 valueUpgrade.style.display = 'none'
 
@@ -284,10 +284,10 @@ prestigeButton.addEventListener("click", function() {
   prestige += 1
   prestigePercent = prestige / 0.05
   cupcakes = 0
-  cupcakeValue = 2
+  cupcakeValue = 1 + prestige
   money = 0
   mpc = 1 + prestige
-  mps = 1
+  mps = 0
   prestigePrice *= 100;
   investmentPrice = 100
   businessPrice = 1000
