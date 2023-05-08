@@ -13,6 +13,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
+  user-select: none;
 }
 
 .center {
@@ -22,6 +23,7 @@ body {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  user-select: none;
 }
 
 #clicker {
