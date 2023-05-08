@@ -16,8 +16,8 @@ let cupcakes = 0
 let cupcakeValue = 1
 let money = 0
 let mpc = 1
-let mps = 1
-let cupcakeNet = 1000000
+let mps = 1 //check
+let cupcakeNet = 1000000 //check
 let prestigePrice = 1000000
 let prestigePercent = 0
 let investmentPrice = 100
@@ -25,7 +25,7 @@ let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 1
+let employees = 1 //check
 
 valueUpgrade.style.display = 'none'
 
@@ -285,14 +285,14 @@ prestigeButton.addEventListener("click", function() {
   cupcakeValue = 1 + prestige
   money = 0
   mpc = 1 + prestige
-  mps = 1
+  mps = 1 //check
   prestigePrice *= 100;
   investmentPrice = 100
   businessPrice = 1000
   employeePrice = 500
   valuePrice = 10000
   interval = 1000
-  employees = 1
+  employees = 1 //check
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.disabled = true
