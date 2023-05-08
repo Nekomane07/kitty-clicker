@@ -16,24 +16,36 @@ let cupcakes = 0
 let cupcakeValue = 1
 let money = 0
 let mpc = 1
-let mps = 0
+let mps = 1
 let cupcakeNet = 0
 let prestigePrice = 100000
-let prestigePercent = 0
+let prestigePercent = 0.05
 let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 0
+let employees = 1
+let passiveIncome = 0
+let mixIncome = mpc
+let totalIncome = 0
+let percentIncome = 0
 
 valueUpgrade.style.display = 'none'
+
+var incomeTracker = function() {
+passiveIncome = Math.floor( 100*((mps * employees) / 4))/100
+mixIncome = Math.floor(100*(mpc/4 * (mps * employees) - passiveIncome))/100
+percentIncome = Math.floor(100*((mixIncome + passiveIncome)*prestigePercent))/100
+totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/100
+}
 
 
 
 var  myTimer = function() {
   clearInterval(loop);
-
+  incomeTracker()
+console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
   if (money < employeePrice) {
@@ -173,8 +185,6 @@ if (mps > 0) {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-
-  console.log(cupcakeNet)
   cupcakes += mpc;
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += mpc;
