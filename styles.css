@@ -87,6 +87,11 @@ body {
   width: max-content;
 }
 
+#statsDisplay::-webkit-scrollbar {
+  display: none;
+}
+
+
 #trade {
   aspect-ratio: 4;
   width: 75%;
