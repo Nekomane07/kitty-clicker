@@ -61,7 +61,7 @@ function getCookie(cname) {
 }
 
 function checkSave() {
-  if ( money > parseFloat(getCookie('Cash'))||(cupcakeNet > (parseInt(getCookie('Networth')) + cupcakeNet*0.1)|| (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt(getCookie('Bakeries'))) || (employees > parseInt(getCookie('Bakers'))) || prestige > parseInt(getCookie('Prestiges')))) {
+  if ( money > parseFloat(getCookie('Cash') + 100)||(cupcakeNet > (parseInt(getCookie('Networth')) + cupcakeNet*0.5)|| (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt(getCookie('Bakeries'))) || (employees > parseInt(getCookie('Bakers'))) || prestige > parseInt(getCookie('Prestiges')))) {
     saveButton.classList.remove('hide')
   } else {
     saveButton.classList.add('hide')
