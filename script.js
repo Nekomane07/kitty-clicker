@@ -11,6 +11,7 @@ var title = document.getElementById('title')
 var sell = document.getElementById('trade')
 var prestigeButton = document.getElementById('prestigeButton')
 var prestigeDisplay = document.getElementById('prestigeDisplay')
+var saveButton = document.getElementById('save')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
@@ -33,6 +34,44 @@ let percentIncome = 0
 
 valueUpgrade.style.display = 'none'
 
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+
+function save() {
+  setCookie('Cash', money, 7)
+  setCookie('Cupcakes', cupcakes, 7)
+  setCookie('Networth', cupcakeNet, 7)
+}
+
+window.onload = function() {
+  money = parseFloat(getCookie('Cash'))
+  cupcakes = parseInt(getCookie('Cupcakes'))
+  cupcakeNet = parseInt(getCookie('Networth'))}
+
+
+
 var incomeTracker = function() {
 passiveIncome = Math.floor( 100*((mps * employees) / 4))/100
 mixIncome = Math.floor(100*(mpc/4 * (mps * employees) - passiveIncome))/100
@@ -44,8 +83,7 @@ totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/1
 
 var  myTimer = function() {
   clearInterval(loop);
-  incomeTracker()
-console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
+  console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
   if (money < employeePrice) {
@@ -119,6 +157,8 @@ if (money < valuePrice) {
 }
 var loop = setInterval(myTimer, loop);
 
+// ----------------------------------------------------------------------
+
 
 
 
@@ -160,7 +200,7 @@ employments.addEventListener("click", function() {
 }​);​
 
 clicker.addEventListener("click", function() {
-
+incomeTracker()
 if (mps > 0) {
   if (money < employeePrice) {
     employments.style.border = '2px solid crimson'
@@ -195,6 +235,11 @@ if (mps > 0) {
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$'
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.floor(cupcakeNet) + '/' + prestigePrice;
 }​);​
+
+
+saveButton.addEventListener("click", function() {
+  save()
+})
 
 investment.addEventListener("click", function() {
     if (money >= investmentPrice) {

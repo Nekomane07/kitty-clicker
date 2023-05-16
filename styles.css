@@ -1,4 +1,6 @@
 * {
+  /* margin: 0;
+  padding: 0; */
   box-sizing: border-box;
 }
 
@@ -198,4 +200,12 @@ h1 {
 }
 #valueUpgrade:hover {
   background-color: lightsteelblue;
+}
+
+
+#save {
+  border-radius: 15px;
+  background-color: green;
+  border: none;
+  outline: none;
 }
