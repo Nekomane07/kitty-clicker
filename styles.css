@@ -204,8 +204,40 @@ h1 {
 
 
 #save {
+  text-align: center;
+  position: absolute;
+  width: 5%;
+  height: 5vh;
   border-radius: 15px;
-  background-color: green;
+  background-color: darkgreen;
   border: none;
   outline: none;
+  bottom: 0;
+}
+
+#save:hover {
+  padding-top: 25px;
+  padding-bottom: 35px;
+  border: 2px solid white;
+  background-color: green;
+  cursor: pointer;
+  width: 20vw;
+  transition: all .3s ease;
+}
+
+
+
+
+
+#save.hide:hover {
+  width: 20vw;
+  opacity: 100%;
+  background-color: red;
+  transition: all .3s ease;
+}
+
+#save.hide {
+  background-color: darkred;
+  transition: all .3s ease;
+
 }

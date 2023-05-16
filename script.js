@@ -34,6 +34,9 @@ let percentIncome = 0
 
 valueUpgrade.style.display = 'none'
 
+
+// ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
+
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -57,18 +60,60 @@ function getCookie(cname) {
   return "";
 }
 
-
+function checkSave() {
+  if (money > parseFloat(getCookie('Cash')) || (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt('Bakeries')) || (employees > parseInt('Bakers')) || prestige > parseInt('Prestiges')) {
+    saveButton.classList.remove('hide')
+  } else {
+    saveButton.classList.add('hide')
+  }}
 
 function save() {
-  setCookie('Cash', money, 7)
-  setCookie('Cupcakes', cupcakes, 7)
-  setCookie('Networth', cupcakeNet, 7)
+  // Purchases and Stats
+  setCookie('Cash', Math.floor(100*money)/100, 7)
+  setCookie('Cupcakes', Math.round(cupcakes), 7)
+  setCookie('Networth', Math.round(cupcakeNet), 7)
+  setCookie('MPC', mpc, 7)
+  setCookie('Bakeries', mps, 7)
+  setCookie('Bakers', employees, 7) 
+  setCookie('Prestiges', prestige, 7)
+
+  // Prices
+  setCookie('Mix Price', Math.floor(100*(investmentPrice))/100, 7)
+  setCookie('Bakery Price', Math.floor(100*(mps))/100, 7)
+  setCookie('Baker Price', Math.floor(100*(employeePrice))/100, 7)  
+  setCookie('Prestige Price', Math.floor(100*(prestigePrice))/100, 7)
+
+
+  checkSave()
 }
 
+
 window.onload = function() {
+
+  // Purchases and Stat's
+  if(parseInt(getCookie('Networth')) > 0) {
+  checkSave()
   money = parseFloat(getCookie('Cash'))
   cupcakes = parseInt(getCookie('Cupcakes'))
-  cupcakeNet = parseInt(getCookie('Networth'))}
+  cupcakeNet = parseInt(getCookie('Networth'))
+  mpc = getCookie('MPC')
+  mps = getCookie('Bakeries')
+  employees = getCookie('Bakers') 
+  prestige = getCookie('Prestiges')
+
+
+  // Prices 
+  investmentPrice = getCookie('Mix Price')
+  businessPrice = getCookie('Bakery Price')
+  employeePrice = getCookie('Baker Price')  
+  prestigePrice = getCookie('Prestige Price')
+
+
+}}
+
+
+
+// ----------------------------------------------------------------------------------
 
 
 
@@ -154,28 +199,21 @@ if (money < valuePrice) {
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.round(cupcakeNet) + '/' + prestigePrice;
+
+  if (cupcakeNet > parseFloat(getCookie('Networth'))) {
+    saveButton.classList.remove('hide')
+  } else {
+    saveButton.classList.add('hide')
+  }
+
 }
+
 var loop = setInterval(myTimer, loop);
 
 // ----------------------------------------------------------------------
 
 
 
-
-valueUpgrade.addEventListener("click", function() {
-  if (money >= valuePrice) {
-    cupcakeValue += 1 + prestige
-    money -= valuePrice;
-    valuePrice = Math.round(valuePrice*2);
-    valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
-    moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
-    if (money < valuePrice) {
-      valueUpgrade.style.border = '2px solid crimson'
-    } else {
-      valueUpgrade.style.border = '2px solid blue'
-    } 
-  }
-}​);​
 
 employments.addEventListener("click", function() {
   
@@ -239,10 +277,16 @@ if (mps > 0) {
 
 saveButton.addEventListener("click", function() {
   save()
+  if (money > parseFloat(getCookie('Cash')) || cupcakes > parseInt(getCookie('Cupcakes')) || (cupcakeNet > parseInt(getCookie('Networth')))) {
+    saveButton.classList.remove('hide')
+  } else {
+    saveButton.classList.add('hide')
+  }
+
 })
 
 investment.addEventListener("click", function() {
-    if (money >= investmentPrice) {
+      if (money >= investmentPrice) {
     mpc = (Math.floor(( (mpc*(1.1)))*100))/100;
     money -= investmentPrice;
     investmentPrice = Math.round(investmentPrice*(1.2 + prestige))
@@ -255,9 +299,11 @@ investment.addEventListener("click", function() {
       investment.style.border = '2px solid blue'
     } 
   }
+  checkSave()
 }​);​
 
 business.addEventListener("click", function() {
+  
 if (mps == 0) {
   employments.style.opacity = '50%'
   employments.style.border = '2px solid crimson'
@@ -296,7 +342,7 @@ if (mps == 0) {
         }
       }
     }
-
+    checkSave()
 }​);​
 
 sell.addEventListener("click", function() {
@@ -328,7 +374,7 @@ sell.addEventListener("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  
+  checkSave()
 }​);​
 
 
@@ -373,7 +419,7 @@ prestigeButton.addEventListener("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  
+  save()
 }​);​
   
 screen.addEventListener ("click", function() { 
@@ -403,5 +449,5 @@ screen.addEventListener ("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  
+  checkSave
 });
