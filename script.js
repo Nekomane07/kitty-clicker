@@ -95,17 +95,17 @@ window.onload = function() {
   money = parseFloat(getCookie('Cash'))
   cupcakes = parseInt(getCookie('Cupcakes'))
   cupcakeNet = parseInt(getCookie('Networth'))
-  mpc = getCookie('MPC')
-  mps = getCookie('Bakeries')
-  employees = getCookie('Bakers') 
-  prestige = getCookie('Prestiges')
+  mpc = parseFloat(getCookie('MPC'))
+  mps = parseInt(getCookie('Bakeries'))
+  employees = parseInt(getCookie('Bakers'))
+  prestige = parseInt(getCookie('Prestiges'))
 
 
   // Prices 
-  investmentPrice = getCookie('Mix Price')
-  businessPrice = getCookie('Bakery Price')
-  employeePrice = getCookie('Baker Price')  
-  prestigePrice = getCookie('Prestige Price')
+  investmentPrice = parseInt(getCookie('Mix Price'))
+  businessPrice = parseInt(getCookie('Bakery Price'))
+  employeePrice = parseInt(getCookie('Baker Price'))
+  prestigePrice = parseInt(getCookie('Prestige Price'))
 
 
 }
