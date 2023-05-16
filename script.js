@@ -79,7 +79,7 @@ function save() {
 
   // Prices
   setCookie('Mix Price', Math.floor(100*(investmentPrice))/100, 7)
-  setCookie('Bakery Price', Math.floor(100*(mps))/100, 7)
+  setCookie('Bakery Price', Math.floor(100*(businessPrice))/100, 7)
   setCookie('Baker Price', Math.floor(100*(employeePrice))/100, 7)  
   setCookie('Prestige Price', Math.floor(100*(prestigePrice))/100, 7)
 
@@ -89,6 +89,8 @@ function save() {
 
 
 window.onload = function() {
+if(Math.round(getCookie('Networth')) > 0) {
+  saveButton.classList.remove('hide')
 
   // Purchases and Stat's
   checkSave()
@@ -108,7 +110,7 @@ window.onload = function() {
   prestigePrice = parseInt(getCookie('Prestige Price'))
 
 
-}
+}}
 
 
 
