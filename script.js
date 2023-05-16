@@ -129,7 +129,6 @@ totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/1
 
 var  myTimer = function() {
   clearInterval(loop);
-  checkSave()
   console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
@@ -201,7 +200,7 @@ if (money < valuePrice) {
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.round(cupcakeNet) + '/' + prestigePrice;
-
+  checkSave()
 }
 
 var loop = setInterval(myTimer, loop);
@@ -364,8 +363,6 @@ sell.addEventListener("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-
-  checkSave()
 }​);​
 
 
