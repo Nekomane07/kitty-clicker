@@ -87,6 +87,10 @@ function save() {
   checkSave()
 }
 
+window.onbeforeunload = function() {
+  save()
+}
+
 
 window.onload = function() {
 if(Math.round(getCookie('Networth')) > 0) {
