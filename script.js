@@ -91,7 +91,6 @@ function save() {
 window.onload = function() {
 
   // Purchases and Stat's
-  if(parseInt(getCookie('Networth')) > 0) {
   checkSave()
   money = parseFloat(getCookie('Cash'))
   cupcakes = parseInt(getCookie('Cupcakes'))
@@ -109,7 +108,7 @@ window.onload = function() {
   prestigePrice = getCookie('Prestige Price')
 
 
-}}
+}
 
 
 
