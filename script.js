@@ -61,7 +61,7 @@ function getCookie(cname) {
 }
 
 function checkSave() {
-  if (money > parseFloat(getCookie('Cash')) || (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt('Bakeries')) || (employees > parseInt('Bakers')) || prestige > parseInt('Prestiges')) {
+  if ((cupcakeNet > (parseInt(getCookie('Networth')))|| (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt(getCookie('Bakeries'))) || (employees > parseInt(getCookie('Bakers'))) || prestige > parseInt(getCookie('Prestiges'))))) {
     saveButton.classList.remove('hide')
   } else {
     saveButton.classList.add('hide')
@@ -129,6 +129,7 @@ totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/1
 
 var  myTimer = function() {
   clearInterval(loop);
+  checkSave()
   console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
@@ -201,12 +202,6 @@ if (money < valuePrice) {
   prestigeDisplay.innerHTML = prestige
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.round(cupcakeNet) + '/' + prestigePrice;
 
-  if (cupcakeNet > parseFloat(getCookie('Networth'))) {
-    saveButton.classList.remove('hide')
-  } else {
-    saveButton.classList.add('hide')
-  }
-
 }
 
 var loop = setInterval(myTimer, loop);
@@ -235,7 +230,7 @@ employments.addEventListener("click", function() {
       employments.style.border = '2px solid blue'
     }
   }
-  
+  checkSave()
 }​);​
 
 clicker.addEventListener("click", function() {
@@ -278,12 +273,6 @@ if (mps > 0) {
 
 saveButton.addEventListener("click", function() {
   save()
-  if (money > parseFloat(getCookie('Cash')) || cupcakes > parseInt(getCookie('Cupcakes')) || (cupcakeNet > parseInt(getCookie('Networth')))) {
-    saveButton.classList.remove('hide')
-  } else {
-    saveButton.classList.add('hide')
-  }
-
 })
 
 investment.addEventListener("click", function() {
