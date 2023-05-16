@@ -61,7 +61,7 @@ function getCookie(cname) {
 }
 
 function checkSave() {
-  if ( money > parseFloat(getCookie('Cash') + 100)|| (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt(getCookie('Bakeries'))) || (employees > parseInt(getCookie('Bakers')))) {
+  if ( money > (parseFloat(getCookie('Cash') + (parseFloat(getCookie('Cash')))))|| (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt(getCookie('Bakeries'))) || (employees > parseInt(getCookie('Bakers')))) {
 
     saveButton.classList.remove('hide')
   } else {
