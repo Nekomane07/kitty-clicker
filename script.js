@@ -11,29 +11,147 @@ var title = document.getElementById('title')
 var sell = document.getElementById('trade')
 var prestigeButton = document.getElementById('prestigeButton')
 var prestigeDisplay = document.getElementById('prestigeDisplay')
+var saveButton = document.getElementById('save')
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
-let money = 0
-let mpc = 1
-let mps = 0
-let cupcakeNet = 0
-let prestigePrice = 1000000
-let prestigePercent = 0
+let money = 0 //check
+let mpc = 1 //check
+let mps = 0 //check
+let cupcakeNet = 0 //check
+let prestigePrice = 100000
+let prestigePercent = 0 //check
 let investmentPrice = 100
 let businessPrice = 1000
 let employeePrice = 500
 let valuePrice = 100000
 let interval = 1000
-let employees = 0
+let employees = 0 //check
+let passiveIncome = 0
+let mixIncome = mpc
+let totalIncome = 0
+let percentIncome = 0
 
 valueUpgrade.style.display = 'none'
+
+
+// ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
+let saveLocal = function() {
+  localStorage.setItem('Cash', getCookie('Cash'));
+  localStorage.setItem('Cupcakes',getCookie('Cupcakes'));
+  localStorage.setItem('Networth', getCookie('Networth'));
+  localStorage.setItem('MPC', getCookie('MPC'))
+  localStorage.setItem('Bakeries', getCookie('Bakeries'));
+  localStorage.setItem('Bakers', getCookie('Bakers'))
+  localStorage.setItem('Prestiges', getCookie('Prestiges'));
+  localStorage.setItem('Interval', getCookie('Interval'))
+
+  localStorage.setItem('Mix Price', getCookie('Mix Price'));
+  localStorage.setItem('Bakery Price', getCookie('Bakery Price'));
+  localStorage.setItem('Baker Price', getCookie('Baker Price'));
+  localStorage.setItem('Prestige Price', getCookie('Prestige Price'));
+}
+
+let loadLocal = function() {
+    // Purchases and Stat's
+    checkCookies()
+    money = parseFloat(localStorage.getItem('Cash'))
+    cupcakes = parseInt(localStorage.getItem('Cupcakes'))
+    cupcakeNet = parseInt(localStorage.getItem('Networth'))
+    mpc = parseFloat(localStorage.getItem('MPC'))
+    mps = parseInt(localStorage.getItem('Bakeries'))
+    employees = parseInt(localStorage.getItem('Bakers'))
+    prestige = parseInt(localStorage.getItem('Prestiges'))
+    interval = parseInt(localStorage.getItem('Interval'))
+    // Prices 
+    investmentPrice = localStorage.getItem('Mix Price')
+    businessPrice = localStorage.getItem('Bakery Price')
+    employeePrice = localStorage.getItem('Baker Price')
+    prestigePrice = localStorage.getItem('Prestige Price')
+  
+  
+  }
+  
+  
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookies() {
+  if (Math.round(parseFloat(getCookie('Cash'))) != Math.round(money) || (mpc != parseFloat(getCookie('MPC'))) || (mps != parseInt(getCookie('Bakeries'))) || (employees != parseInt(getCookie('Bakers')))) {
+    saveButton.innerHTML = 'Save?'
+    saveButton.classList.remove('hide')
+  } else {
+    saveButton.innerHTML = 'Saved'
+    saveButton.classList.add('hide')
+  }}
+
+function saveCookies() {
+  // Purchases and Stats
+  setCookie('Cash', Math.floor(100*money)/100, 7)
+  setCookie('Cupcakes', Math.round(cupcakes), 7)
+  setCookie('Networth', Math.round(cupcakeNet), 7)
+  setCookie('MPC', mpc, 7)
+  setCookie('Bakeries', mps, 7)
+  setCookie('Bakers', employees, 7) 
+  setCookie('Prestiges', prestige, 7)
+  setCookie("Interval", interval, 7)
+
+  // Prices
+  setCookie('Mix Price', Math.floor(100*(investmentPrice))/100, 7)
+  setCookie('Bakery Price', Math.floor(100*(businessPrice))/100, 7)
+  setCookie('Baker Price', Math.floor(100*(employeePrice))/100, 7)  
+  setCookie('Prestige Price', Math.floor(100*(prestigePrice))/100, 7)
+  checkCookies()
+  saveLocal()
+}
+
+window.onbeforeunload = function() {
+  saveCookies()
+}
+
+
+window.onload = loadLocal()
+
+
+
+
+// ----------------------------------------------------------------------------------
+
+
+
+var incomeTracker = function() {
+passiveIncome = Math.floor( 100*((mps * employees) / 4))/100
+mixIncome = Math.floor(100*(mpc/4 * (mps * employees) - passiveIncome))/100
+percentIncome = Math.floor(100*((mixIncome + passiveIncome)*prestigePercent))/100
+totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/100
+}
 
 
 
 var  myTimer = function() {
   clearInterval(loop);
-
+  console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
   if (money < employeePrice) {
@@ -104,26 +222,15 @@ if (money < valuePrice) {
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.round(cupcakeNet) + '/' + prestigePrice;
+  checkCookies()
 }
+
 var loop = setInterval(myTimer, loop);
 
+// ----------------------------------------------------------------------
 
 
 
-valueUpgrade.addEventListener("click", function() {
-  if (money >= valuePrice) {
-    cupcakeValue += 1 + prestige
-    money -= valuePrice;
-    valuePrice = Math.round(valuePrice*2);
-    valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
-    moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
-    if (money < valuePrice) {
-      valueUpgrade.style.border = '2px solid crimson'
-    } else {
-      valueUpgrade.style.border = '2px solid blue'
-    } 
-  }
-}​);​
 
 employments.addEventListener("click", function() {
   
@@ -144,11 +251,11 @@ employments.addEventListener("click", function() {
       employments.style.border = '2px solid blue'
     }
   }
-  
+  checkCookies()
 }​);​
 
 clicker.addEventListener("click", function() {
-
+incomeTracker()
 if (mps > 0) {
   if (money < employeePrice) {
     employments.style.border = '2px solid crimson'
@@ -173,8 +280,6 @@ if (mps > 0) {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-
-  console.log(cupcakeNet)
   cupcakes += mpc;
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += mpc;
@@ -186,8 +291,13 @@ if (mps > 0) {
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.floor(cupcakeNet) + '/' + prestigePrice;
 }​);​
 
+
+saveButton.addEventListener("click", function() {
+  saveCookies()
+})
+
 investment.addEventListener("click", function() {
-    if (money >= investmentPrice) {
+      if (money >= investmentPrice) {
     mpc = (Math.floor(( (mpc*(1.1)))*100))/100;
     money -= investmentPrice;
     investmentPrice = Math.round(investmentPrice*(1.2 + prestige))
@@ -200,9 +310,11 @@ investment.addEventListener("click", function() {
       investment.style.border = '2px solid blue'
     } 
   }
+  checkCookies()
 }​);​
 
 business.addEventListener("click", function() {
+  
 if (mps == 0) {
   employments.style.opacity = '50%'
   employments.style.border = '2px solid crimson'
@@ -241,7 +353,7 @@ if (mps == 0) {
         }
       }
     }
-
+    checkCookies()
 }​);​
 
 sell.addEventListener("click", function() {
@@ -273,7 +385,6 @@ sell.addEventListener("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  
 }​);​
 
 
@@ -286,7 +397,7 @@ prestigeButton.addEventListener("click", function() {
   money = 0
   mpc = 1 + prestige
   mps = 0
-  prestigePrice *= 100;
+  prestigePrice *= 10;
   investmentPrice = 100
   businessPrice = 1000
   employeePrice = 500
@@ -318,7 +429,7 @@ prestigeButton.addEventListener("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  
+  saveCookies()
 }​);​
   
 screen.addEventListener ("click", function() { 
@@ -348,5 +459,5 @@ screen.addEventListener ("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  
+  checkCookies()
 });

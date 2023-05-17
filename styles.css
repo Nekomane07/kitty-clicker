@@ -1,4 +1,6 @@
 * {
+  /* margin: 0;
+  padding: 0; */
   box-sizing: border-box;
 }
 
@@ -13,6 +15,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
+  user-select: none;
 }
 
 .center {
@@ -22,6 +25,7 @@ body {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  user-select: none;
 }
 
 #clicker {
@@ -84,6 +88,11 @@ body {
 #statsDisplay:hover {
   width: max-content;
 }
+
+#statsDisplay::-webkit-scrollbar {
+  display: none;
+}
+
 
 #trade {
   aspect-ratio: 4;
@@ -191,4 +200,43 @@ h1 {
 }
 #valueUpgrade:hover {
   background-color: lightsteelblue;
+}
+
+
+#save {
+  text-align: center;
+  position: absolute;
+  width: 10%;
+  height: 5vh;
+  border-radius: 15px;
+  background-color: darkred;
+  border: none;
+  outline: none;
+  bottom: 0;
+  transition: all .3s ease;
+}
+
+#save:hover {
+  padding-top: 25px;
+  padding-bottom: 35px;
+  border: 2px solid white;
+  background-color: red;
+  cursor: pointer;
+  width: 20vw;
+  transition: all .3s ease;
+}
+
+
+#save.hide:hover {
+  width: 20vw;
+  opacity: 100%;
+  background-color: green;
+  transition: all .3s ease;
+}
+
+#save.hide {
+  width: 5%;
+  background-color: darkgreen;
+  transition: all .3s ease;
+
 }
