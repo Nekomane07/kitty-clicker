@@ -44,6 +44,7 @@ let saveLocal = function() {
   localStorage.setItem('Bakeries', getCookie('Bakeries'));
   localStorage.setItem('Bakers', getCookie('Bakers'))
   localStorage.setItem('Prestiges', getCookie('Prestiges'));
+  localStorage.setItem('Interval', getCookie('Interval'))
 
   localStorage.setItem('Mix Price', getCookie('Mix Price'));
   localStorage.setItem('Bakery Price', getCookie('Bakery Price'));
@@ -61,8 +62,7 @@ let loadLocal = function() {
     mps = parseInt(localStorage.getItem('Bakeries'))
     employees = parseInt(localStorage.getItem('Bakers'))
     prestige = parseInt(localStorage.getItem('Prestiges'))
-  
-  
+    interval = parseInt(localStorage.getItem('Interval'))
     // Prices 
     investmentPrice = localStorage.getItem('Mix Price')
     businessPrice = localStorage.getItem('Bakery Price')
@@ -115,6 +115,7 @@ function saveCookies() {
   setCookie('Bakeries', mps, 7)
   setCookie('Bakers', employees, 7) 
   setCookie('Prestiges', prestige, 7)
+  setCookie("Interval", interval, 7)
 
   // Prices
   setCookie('Mix Price', Math.floor(100*(investmentPrice))/100, 7)
