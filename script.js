@@ -99,9 +99,10 @@ function getCookie(cname) {
 
 function checkCookies() {
   if (Math.round(parseFloat(getCookie('Cash'))) != Math.round(money) || (mpc != parseFloat(getCookie('MPC'))) || (mps != parseInt(getCookie('Bakeries'))) || (employees != parseInt(getCookie('Bakers')))) {
-
+    saveButton.innerHTML = 'Save?'
     saveButton.classList.remove('hide')
   } else {
+    saveButton.innerHTML = 'Saved'
     saveButton.classList.add('hide')
   }}
 

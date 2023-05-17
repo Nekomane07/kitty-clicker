@@ -206,10 +206,10 @@ h1 {
 #save {
   text-align: center;
   position: absolute;
-  width: 5%;
+  width: 10%;
   height: 5vh;
   border-radius: 15px;
-  background-color: darkgreen;
+  background-color: darkred;
   border: none;
   outline: none;
   bottom: 0;
@@ -220,7 +220,7 @@ h1 {
   padding-top: 25px;
   padding-bottom: 35px;
   border: 2px solid white;
-  background-color: green;
+  background-color: red;
   cursor: pointer;
   width: 20vw;
   transition: all .3s ease;
@@ -230,12 +230,13 @@ h1 {
 #save.hide:hover {
   width: 20vw;
   opacity: 100%;
-  background-color: red;
+  background-color: green;
   transition: all .3s ease;
 }
 
 #save.hide {
-  background-color: darkred;
+  width: 5%;
+  background-color: darkgreen;
   transition: all .3s ease;
 
 }
