@@ -213,6 +213,7 @@ h1 {
   border: none;
   outline: none;
   bottom: 0;
+  transition: all .3s ease;
 }
 
 #save:hover {
