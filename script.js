@@ -36,6 +36,43 @@ valueUpgrade.style.display = 'none'
 
 
 // ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
+let saveLocal = function() {
+  localStorage.setItem('Cash', getCookie('Cash'));
+  localStorage.setItem('Cupcakes',getCookie('Cupcakes'));
+  localStorage.setItem('Networth', getCookie('Networth'));
+  localStorage.setItem('MPC', getCookie('MPC'))
+  localStorage.setItem('Bakeries', getCookie('Bakeries'));
+  localStorage.setItem('Bakers', getCookie('Bakers'))
+  localStorage.setItem('Prestiges', getCookie('Prestiges'));
+
+  localStorage.setItem('Mix Price', getCookie('Mix Price'));
+  localStorage.setItem('Bakery Price', getCookie('Bakery Price'));
+  localStorage.setItem('Baker Price', getCookie('Baker Price'));
+  localStorage.setItem('Prestige Price', getCookie('Prestige Price'));
+}
+
+let loadLocal = function() {
+    // Purchases and Stat's
+    checkCookies()
+    money = parseFloat(localStorage.getItem('Cash'))
+    cupcakes = parseInt(localStorage.getItem('Cupcakes'))
+    cupcakeNet = parseInt(localStorage.getItem('Networth'))
+    mpc = parseFloat(localStorage.getItem('MPC'))
+    mps = parseInt(localStorage.getItem('Bakeries'))
+    employees = parseInt(localStorage.getItem('Bakers'))
+    prestige = parseInt(localStorage.getItem('Prestiges'))
+  
+  
+    // Prices 
+    investmentPrice = localStorage.getItem('Mix Price')
+    businessPrice = localStorage.getItem('Bakery Price')
+    employeePrice = localStorage.getItem('Baker Price')
+    prestigePrice = localStorage.getItem('Prestige Price')
+  
+  
+  }
+  
+  
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -60,15 +97,15 @@ function getCookie(cname) {
   return "";
 }
 
-function checkSave() {
-  if (parseFloat(getCookie(cupcakes)) > money ||(cupcakeNet > (parseInt(getCookie('Networth') + (getCookie('Networth')*0.20))))|| (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt(getCookie('Bakeries'))) || (employees > parseInt(getCookie('Bakers')))) {
+function checkCookies() {
+  if (parseFloat(getCookie('Cupcakes')) > money ||(cupcakeNet > (parseInt(getCookie('Networth') + (getCookie('Networth')*0.20))))|| (mpc > parseFloat(getCookie('MPC'))) || (mps > parseInt(getCookie('Bakeries'))) || (employees > parseInt(getCookie('Bakers')))) {
 
     saveButton.classList.remove('hide')
   } else {
     saveButton.classList.add('hide')
   }}
 
-function save() {
+function saveCookies() {
   // Purchases and Stats
   setCookie('Cash', Math.floor(100*money)/100, 7)
   setCookie('Cupcakes', Math.round(cupcakes), 7)
@@ -83,39 +120,17 @@ function save() {
   setCookie('Bakery Price', Math.floor(100*(businessPrice))/100, 7)
   setCookie('Baker Price', Math.floor(100*(employeePrice))/100, 7)  
   setCookie('Prestige Price', Math.floor(100*(prestigePrice))/100, 7)
-
-
-  checkSave()
+  checkCookies()
+  saveLocal()
 }
 
 window.onbeforeunload = function() {
-  save()
+  saveCookies()
 }
 
 
-window.onload = function() {
-if(Math.round(getCookie('Networth')) > 0) {
-  saveButton.classList.remove('hide')
+window.onload = loadLocal()
 
-  // Purchases and Stat's
-  checkSave()
-  money = parseFloat(getCookie('Cash'))
-  cupcakes = parseInt(getCookie('Cupcakes'))
-  cupcakeNet = parseInt(getCookie('Networth'))
-  mpc = parseFloat(getCookie('MPC'))
-  mps = parseInt(getCookie('Bakeries'))
-  employees = parseInt(getCookie('Bakers'))
-  prestige = parseInt(getCookie('Prestiges'))
-
-
-  // Prices 
-  investmentPrice = parseInt(getCookie('Mix Price'))
-  businessPrice = parseInt(getCookie('Bakery Price'))
-  employeePrice = parseInt(getCookie('Baker Price'))
-  prestigePrice = parseInt(getCookie('Prestige Price'))
-
-
-}}
 
 
 
@@ -205,7 +220,7 @@ if (money < valuePrice) {
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.round(cupcakeNet) + '/' + prestigePrice;
-  checkSave()
+  checkCookies()
 }
 
 var loop = setInterval(myTimer, loop);
@@ -234,7 +249,7 @@ employments.addEventListener("click", function() {
       employments.style.border = '2px solid blue'
     }
   }
-  checkSave()
+  checkCookies()
 }​);​
 
 clicker.addEventListener("click", function() {
@@ -276,7 +291,7 @@ if (mps > 0) {
 
 
 saveButton.addEventListener("click", function() {
-  save()
+  saveCookies()
 })
 
 investment.addEventListener("click", function() {
@@ -293,7 +308,7 @@ investment.addEventListener("click", function() {
       investment.style.border = '2px solid blue'
     } 
   }
-  checkSave()
+  checkCookies()
 }​);​
 
 business.addEventListener("click", function() {
@@ -336,7 +351,7 @@ if (mps == 0) {
         }
       }
     }
-    checkSave()
+    checkCookies()
 }​);​
 
 sell.addEventListener("click", function() {
@@ -412,7 +427,7 @@ prestigeButton.addEventListener("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  save()
+  saveCookies()
 }​);​
   
 screen.addEventListener ("click", function() { 
@@ -442,5 +457,5 @@ screen.addEventListener ("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  checkSave
+  checkCookies()
 });
