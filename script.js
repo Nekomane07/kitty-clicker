@@ -58,7 +58,7 @@ let wipeCookies = function() {
 
 let saveLocal = function() {
   localStorage.setItem('Cash', getCookie('Cash'));
-  localStorage.setItem('Cupcaes',getCookie('Cupcakes'));
+  localStorage.setItem('Cupcakes',getCookie('Cupcakes'));
   localStorage.setItem('Networth', getCookie('Networth'));
   localStorage.setItem('MPC', getCookie('MPC'))
   localStorage.setItem('Bakeries', getCookie('Bakeries'));
@@ -150,7 +150,7 @@ window.onbeforeunload = function() {
 }
 
 
-window.onload = wipeCookies()
+window.onload = loadLocal()
 
 
 
