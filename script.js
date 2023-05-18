@@ -36,9 +36,29 @@ valueUpgrade.style.display = 'none'
 
 
 // ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
+
+let wipeCookies = function() {
+  setCookie('Cash', 0, 7)
+  setCookie('Cupcakes', 0, 7)
+  setCookie('Networth', 0, 7)
+  setCookie('MPC', 1, 7)
+  setCookie('Bakeries', 0, 7)
+  setCookie('Bakers', 0, 7) 
+  setCookie('Prestiges', 0, 7)
+  setCookie("Interval", 1000, 7)
+
+  // Prices
+  setCookie('Mix Price', 100, 7)
+  setCookie('Bakery Price', 1000, 7)
+  setCookie('Baker Price', 500, 7)  
+  setCookie('Prestige Price', 100000, 7)
+  localStorage.clear()
+  saveLocal()
+}
+
 let saveLocal = function() {
   localStorage.setItem('Cash', getCookie('Cash'));
-  localStorage.setItem('Cupcakes',getCookie('Cupcakes'));
+  localStorage.setItem('Cupcaes',getCookie('Cupcakes'));
   localStorage.setItem('Networth', getCookie('Networth'));
   localStorage.setItem('MPC', getCookie('MPC'))
   localStorage.setItem('Bakeries', getCookie('Bakeries'));
@@ -68,11 +88,10 @@ let loadLocal = function() {
     businessPrice = localStorage.getItem('Bakery Price')
     employeePrice = localStorage.getItem('Baker Price')
     prestigePrice = localStorage.getItem('Prestige Price')
-  
-  
-  }
-  
-  
+  if (cupcakes == NaN) {
+      wipeCookies()
+  }}
+
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -131,8 +150,7 @@ window.onbeforeunload = function() {
 }
 
 
-window.onload = loadLocal()
-
+window.onload = wipeCookies()
 
 
 
