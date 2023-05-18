@@ -36,6 +36,14 @@ valueUpgrade.style.display = 'none'
 
 
 // ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
+function checkCookies() {
+  if (Math.round(parseFloat(getCookie('Cash'))) != Math.round(money) || (mpc != parseFloat(getCookie('MPC'))) || (mps != parseInt(getCookie('Bakeries'))) || (employees != parseInt(getCookie('Bakers')))) {
+    saveButton.innerHTML = 'Save?'
+    saveButton.classList.remove('hide')
+  } else {
+    saveButton.innerHTML = 'Saved'
+    saveButton.classList.add('hide')
+  }}
 
 let wipeCookies = function() {
   setCookie('Cash', 0, 7)
@@ -88,10 +96,7 @@ let loadLocal = function() {
     businessPrice = localStorage.getItem('Bakery Price')
     employeePrice = localStorage.getItem('Baker Price')
     prestigePrice = localStorage.getItem('Prestige Price')
-  if (cupcakes == NaN) {
-      wipeCookies()
-  }}
-
+}
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -116,14 +121,6 @@ function getCookie(cname) {
   return "";
 }
 
-function checkCookies() {
-  if (Math.round(parseFloat(getCookie('Cash'))) != Math.round(money) || (mpc != parseFloat(getCookie('MPC'))) || (mps != parseInt(getCookie('Bakeries'))) || (employees != parseInt(getCookie('Bakers')))) {
-    saveButton.innerHTML = 'Save?'
-    saveButton.classList.remove('hide')
-  } else {
-    saveButton.innerHTML = 'Saved'
-    saveButton.classList.add('hide')
-  }}
 
 function saveCookies() {
   // Purchases and Stats
@@ -149,9 +146,16 @@ window.onbeforeunload = function() {
   saveCookies()
 }
 
+// This code isnt functional
+// let checkError = function() {
+//   for (let i = 0; i < localStorage.key(length); i++) {
+//     if (type(localStorage.getItem(i)) === int || type(localStorage.getItem(i)) === float) {
+//     loadLocal()
+
+// } else {wipeCookies()} 
+// }}
 
 window.onload = loadLocal()
-
 
 
 // ----------------------------------------------------------------------------------
