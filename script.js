@@ -54,7 +54,9 @@ function checkCookies() {
 
       } else {
         saveButton.innerHTML = 'Saved'
-  
+  if (cupcakeNet > prestigePrice) {
+    cupcakeNet = prestigePrice
+  }
 }
   }}
 
@@ -372,7 +374,7 @@ investment.addEventListener("click", function() {
       if (money >= investmentPrice) {
     mpc = (Math.floor(( (mpc*(1.1)))*100))/100;
     money -= investmentPrice;
-    investmentPrice = Math.round(investmentPrice*(1.2 + prestige))
+    investmentPrice = Math.round(investmentPrice*(1.1 + (prestige/10)))
     investment.innerHTML = 'Cupcake Mix: ' + mpc + ' | ' + investmentPrice + '$';
     cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes);
 
