@@ -32,6 +32,7 @@ let mixIncome = mpc
 let totalIncome = 0
 let percentIncome = 0
 let cookies = ''
+
 valueUpgrade.style.display = 'none'
 
 
@@ -117,6 +118,7 @@ let saveLocal = function() {
 
 let loadLocal = function() {
     // Purchases and Stat's
+
     money = parseFloat(localStorage.getItem('Cash'))
     cupcakes = parseInt(localStorage.getItem('Cupcakes'))
     cupcakeNet = parseInt(localStorage.getItem('Networth'))
@@ -126,6 +128,7 @@ let loadLocal = function() {
     prestige = parseInt(localStorage.getItem('Prestiges'))
     interval = parseInt(localStorage.getItem('Interval'))
     cupcakeValue = parseInt(localStorage.getItem('Cupcake Value'))
+
     // Prices 
     investmentPrice = localStorage.getItem('Mix Price')
     businessPrice = localStorage.getItem('Bakery Price')
@@ -134,6 +137,7 @@ let loadLocal = function() {
     checkError()
 
 }
+
 
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
@@ -159,6 +163,7 @@ function getCookie(cname) {
 }
 
 
+
 function saveCookies() {
   // Purchases and Stats
   setCookie('Cash', Math.floor(100*money)/100, 7)
@@ -170,6 +175,7 @@ function saveCookies() {
   setCookie('Prestiges', prestige, 7)
   setCookie("Interval", interval, 7)
   setCookie('Cupcake Value', cupcakeValue, 7)
+
 
   // Prices
   setCookie('Mix Price', Math.floor(100*(investmentPrice))/100, 7)
@@ -203,6 +209,7 @@ let checkError = function() {
 }
 
 window.onload = loadLocal()
+
 
 // ----------------------------------------------------------------------------------
 
@@ -365,6 +372,7 @@ saveButton.addEventListener("click", function() {
   if (confirm('Are you sure you wish to save?') == true) {
     saveCookies()
   }
+
 })
 
 investment.addEventListener("click", function() {
@@ -501,6 +509,7 @@ prestigeButton.addEventListener("click", function() {
     valueUpgrade.style.border = '2px solid blue'
   } 
   checkCookies()
+
 }​);​
   
 screen.addEventListener ("click", function() { 
