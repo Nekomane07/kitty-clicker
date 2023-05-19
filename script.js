@@ -274,7 +274,8 @@ if (money < valuePrice) {
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += ((mpc/4)*(mps * employees))
   } else {
-    cupcakeNet = prestigePrice
+    Math.round(cupcakeNet)
+
   }
   cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes)
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
@@ -353,7 +354,7 @@ if (mps > 0) {
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += mpc;
   } else {
-    cupcakeNet = prestigePrice
+    cupcakeNet = (prestigePrice*10)/10
   }
   cupcakeDisplay.innerHTML = 'Cupcakes: <br>' + Math.floor(cupcakes);
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$'
@@ -469,6 +470,7 @@ prestigeButton.addEventListener("click", function() {
   mpc = 1 + prestige
   mps = 0
   prestigePrice *= 10;
+  cupcakeNet = prestigePrice/10
   investmentPrice = 100
   businessPrice = 1000
   employeePrice = 500
