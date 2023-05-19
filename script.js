@@ -31,18 +31,35 @@ let passiveIncome = 0
 let mixIncome = mpc
 let totalIncome = 0
 let percentIncome = 0
+let cookies = ''
 valueUpgrade.style.display = 'none'
 
 
 // ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
+
+
+
 function checkCookies() {
+  clearInterval()
   if (Math.round(parseFloat(getCookie('Cash'))) != Math.round(money) || (mpc != parseFloat(getCookie('MPC'))) || (mps != parseInt(getCookie('Bakeries'))) || (cupcakeValue != parseFloat(getCookie('Cupcake Value'))) || (employees != parseInt(getCookie('Bakers')))) {
     saveButton.innerHTML = 'Save?'
+
     saveButton.classList.remove('hide')
+  
   } else {
-    saveButton.innerHTML = 'Saved'
+
     saveButton.classList.add('hide')
+      if(saveButton.matches(":hover")) {
+        saveButton.innerHTML = 'Save?'
+
+      } else {
+        saveButton.innerHTML = 'Saved'
+  
+}
   }}
+
+  setInterval(checkCookies, 100)
+
 
 let wipeCookies = function() {
   setCookie('Cash', 0, 7)
@@ -80,6 +97,7 @@ let saveLocal = function() {
   localStorage.setItem('Bakery Price', getCookie('Bakery Price'));
   localStorage.setItem('Baker Price', getCookie('Baker Price'));
   localStorage.setItem('Prestige Price', getCookie('Prestige Price'));
+
   alert('Local Storage Saved: \r' + cookies)
   }
 
@@ -89,17 +107,16 @@ let saveLocal = function() {
           var ret = '';
           for(var i = 1; i <= cookies.length; i++) {
               ret += i + ' - ' + cookies[i - 1] + '\r';
+
           }
+          ret += '\r Total Cookies: ' + cookies.length
           return ret;
           
       }
       
-let cookies = cookieList()
-
 
 let loadLocal = function() {
     // Purchases and Stat's
-    checkCookies()
     money = parseFloat(localStorage.getItem('Cash'))
     cupcakes = parseInt(localStorage.getItem('Cupcakes'))
     cupcakeNet = parseInt(localStorage.getItem('Networth'))
@@ -160,6 +177,8 @@ function saveCookies() {
   setCookie('Baker Price', Math.floor(100*(employeePrice))/100, 7)  
   setCookie('Prestige Price', Math.floor(100*(prestigePrice))/100, 7)
   checkCookies()
+  cookies = cookieList()
+
   saveLocal()
 }
 
@@ -195,6 +214,7 @@ totalIncome = Math.floor( 100*(( mixIncome + passiveIncome + percentIncome) ))/1
 
 var  myTimer = function() {
   clearInterval(loop);
+  checkCookies()
   console.log('Mix Income: ' + mixIncome + '\n prestige income: ' + percentIncome + ' - ' + prestigePercent * 100 + '%' + '\n Passive Income: ' + passiveIncome + '\n Total Income: ' + totalIncome + ' x' + cupcakeValue)
 
 if (mps == 0) {
