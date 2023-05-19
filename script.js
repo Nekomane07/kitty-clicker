@@ -357,7 +357,7 @@ if (mps > 0) {
 
 
 saveButton.addEventListener("click", function() {
-  if (confirm('Are you sure you want to save? \r \r' + cookies) == true) {
+  if (confirm('Are you sure you wish to save?') == true) {
     saveCookies()
   }
 })
