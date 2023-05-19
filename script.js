@@ -31,13 +31,12 @@ let passiveIncome = 0
 let mixIncome = mpc
 let totalIncome = 0
 let percentIncome = 0
-
 valueUpgrade.style.display = 'none'
 
 
 // ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
 function checkCookies() {
-  if (Math.round(parseFloat(getCookie('Cash'))) != Math.round(money) || (mpc != parseFloat(getCookie('MPC'))) || (mps != parseInt(getCookie('Bakeries'))) || (employees != parseInt(getCookie('Bakers')))) {
+  if (Math.round(parseFloat(getCookie('Cash'))) != Math.round(money) || (mpc != parseFloat(getCookie('MPC'))) || (mps != parseInt(getCookie('Bakeries'))) || (cupcakeValue != parseFloat(getCookie('Cupcake Value'))) || (employees != parseInt(getCookie('Bakers')))) {
     saveButton.innerHTML = 'Save?'
     saveButton.classList.remove('hide')
   } else {
@@ -54,6 +53,7 @@ let wipeCookies = function() {
   setCookie('Bakers', 0, 7) 
   setCookie('Prestiges', 0, 7)
   setCookie("Interval", 1000, 7)
+  setCookie("Cupcake Value", 1, 7)
 
   // Prices
   setCookie('Mix Price', 100, 7)
@@ -73,12 +73,29 @@ let saveLocal = function() {
   localStorage.setItem('Bakers', getCookie('Bakers'))
   localStorage.setItem('Prestiges', getCookie('Prestiges'));
   localStorage.setItem('Interval', getCookie('Interval'))
+  localStorage.setItem('Cupcake Value', getCookie('Cupcake Value'))
+
 
   localStorage.setItem('Mix Price', getCookie('Mix Price'));
   localStorage.setItem('Bakery Price', getCookie('Bakery Price'));
   localStorage.setItem('Baker Price', getCookie('Baker Price'));
   localStorage.setItem('Prestige Price', getCookie('Prestige Price'));
-}
+  alert('Local Storage Saved: \r' + cookies)
+  }
+
+
+  let cookieList = function() {
+    var cookies = document.cookie.split(';');
+          var ret = '';
+          for(var i = 1; i <= cookies.length; i++) {
+              ret += i + ' - ' + cookies[i - 1] + '\r';
+          }
+          return ret;
+          
+      }
+      
+let cookies = cookieList()
+
 
 let loadLocal = function() {
     // Purchases and Stat's
@@ -91,11 +108,14 @@ let loadLocal = function() {
     employees = parseInt(localStorage.getItem('Bakers'))
     prestige = parseInt(localStorage.getItem('Prestiges'))
     interval = parseInt(localStorage.getItem('Interval'))
+    cupcakeValue = parseInt(localStorage.getItem('Cupcake Value'))
     // Prices 
     investmentPrice = localStorage.getItem('Mix Price')
     businessPrice = localStorage.getItem('Bakery Price')
     employeePrice = localStorage.getItem('Baker Price')
     prestigePrice = localStorage.getItem('Prestige Price')
+    checkError()
+
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -132,6 +152,7 @@ function saveCookies() {
   setCookie('Bakers', employees, 7) 
   setCookie('Prestiges', prestige, 7)
   setCookie("Interval", interval, 7)
+  setCookie('Cupcake Value', cupcakeValue, 7)
 
   // Prices
   setCookie('Mix Price', Math.floor(100*(investmentPrice))/100, 7)
@@ -146,17 +167,18 @@ window.onbeforeunload = function() {
   saveCookies()
 }
 
-// This code isnt functional
-// let checkError = function() {
-//   for (let i = 0; i < localStorage.key(length); i++) {
-//     if (type(localStorage.getItem(i)) === int || type(localStorage.getItem(i)) === float) {
-//     loadLocal()
+let checkError = function() {
+  for (let i = 1; i <= localStorage.key(length); i++) {
+    if (isNaN(localStorage.getItem(i))) {
+        alert('ERROR: \br Save Corrupted')
+        wipeCookies()
+    } 
+  }
 
-// } else {wipeCookies()} 
-// }}
+
+}
 
 window.onload = loadLocal()
-
 
 // ----------------------------------------------------------------------------------
 
@@ -315,7 +337,9 @@ if (mps > 0) {
 
 
 saveButton.addEventListener("click", function() {
-  saveCookies()
+  if (confirm('Are you sure you want to save? \r \r' + cookies) == true) {
+    saveCookies()
+  }
 })
 
 investment.addEventListener("click", function() {
@@ -451,7 +475,7 @@ prestigeButton.addEventListener("click", function() {
   } else {
     valueUpgrade.style.border = '2px solid blue'
   } 
-  saveCookies()
+  checkCookies()
 }​);​
   
 screen.addEventListener ("click", function() { 
