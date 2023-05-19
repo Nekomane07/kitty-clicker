@@ -182,9 +182,14 @@ function saveCookies() {
   saveLocal()
 }
 
-window.onbeforeunload = function() {
-  saveCookies()
-}
+window.addEventListener('beforeunload', function(e) {
+  checkCookies()
+    if (saveButton.classList.contains('hide') == false) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+});
+
 
 let checkError = function() {
   for (let i = 1; i <= localStorage.key(length); i++) {
