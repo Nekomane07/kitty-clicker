@@ -230,7 +230,7 @@ h1 {
 #save.hide:hover {
   width: 20vw;
   opacity: 100%;
-  background-color: green;
+  background-color: red;
   transition: all .3s ease;
 }
 
