@@ -6,7 +6,6 @@ var cupcakeDisplay = document.getElementById('cupcakeDisplay')
 var moneyDisplay = document.getElementById('moneyDisplay')
 var income = document.getElementById('income')
 var employments = document.getElementById('employments')
-var valueUpgrade = document.getElementById('valueUpgrade')
 var title = document.getElementById('title')
 var sell = document.getElementById('trade')
 var prestigeButton = document.getElementById('prestigeButton')
@@ -32,7 +31,6 @@ let mixIncome = mpc
 let totalIncome = 0
 let percentIncome = 0
 let cookies = ''
-valueUpgrade.style.display = 'none'
 
 
 // ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
@@ -206,6 +204,13 @@ let checkError = function() {
 
 window.onload = loadLocal()
 
+window.addEventListener('storage', () => {
+  window.alert('another window or tab is working on the same localStorage')
+}, false)
+
+localStorage.setItem('Sentinel',Math.random())
+
+
 // ----------------------------------------------------------------------------------
 
 
@@ -240,11 +245,6 @@ if (money < businessPrice) {
   business.style.border = '2px solid crimson'
 } else {
   business.style.border = '2px solid blue'
-} 
-if (money < valuePrice) {
-  valueUpgrade.style.border = '2px solid crimson'
-} else {
-  valueUpgrade.style.border = '2px solid blue'
 } 
 
 
@@ -290,7 +290,6 @@ if (money < valuePrice) {
   investment.innerHTML = 'Cupcake Mix: ' + mpc + ' | ' + investmentPrice + '$';
   employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
-  valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
   prestigeDisplay.innerHTML = prestige
   prestigeButton.innerHTML = 'Cupcakes <br>' + Math.round(cupcakeNet) + '/' + prestigePrice;
@@ -347,11 +346,7 @@ if (mps > 0) {
   } else {
     business.style.border = '2px solid blue'
   } 
-  if (money < valuePrice) {
-    valueUpgrade.style.border = '2px solid crimson'
-  } else {
-    valueUpgrade.style.border = '2px solid blue'
-  } 
+
   cupcakes += mpc;
   if (cupcakeNet < prestigePrice) {
   cupcakeNet += mpc;
@@ -454,11 +449,7 @@ sell.addEventListener("click", function() {
   } else {
     business.style.border = '2px solid blue'
   } 
-  if (money < valuePrice) {
-    valueUpgrade.style.border = '2px solid crimson'
-  } else {
-    valueUpgrade.style.border = '2px solid blue'
-  } 
+
 }​);​
 
 
@@ -499,11 +490,7 @@ prestigeButton.addEventListener("click", function() {
   } else {
     business.style.border = '2px solid blue'
   } 
-  if (money < valuePrice) {
-    valueUpgrade.style.border = '2px solid crimson'
-  } else {
-    valueUpgrade.style.border = '2px solid blue'
-  } 
+
   checkCookies()
 }​);​
   
@@ -511,7 +498,6 @@ screen.addEventListener ("click", function() {
   investment.innerHTML = 'Cupcake Mix: ' + mpc + ' | ' + investmentPrice + '$';
   employments.innerHTML = 'Kitty Bakers: ' + employees + ' | ' + employeePrice + '$';
   moneyDisplay.innerHTML = 'Cash: ' + Math.floor((money*100))/100 + '$';
-  valueUpgrade.innerHTML = 'Cupcake Value: ' + cupcakeValue + ' | ' + valuePrice + '$';
   sell.innerHTML = 'Sell: ' + Math.floor(((cupcakes*cupcakeValue)*100))/100 + '$';
   business.innerHTML = 'Bakeries: ' + mps + ' | ' + businessPrice + '$';
     if (money <= employeePrice) {
@@ -528,11 +514,6 @@ screen.addEventListener ("click", function() {
     business.style.border = '2px solid crimson'
   } else {
     business.style.border = '2px solid blue'
-  } 
-  if (money <= valuePrice) {
-    valueUpgrade.style.border = '2px solid crimson'
-  } else {
-    valueUpgrade.style.border = '2px solid blue'
   } 
   checkCookies()
 });

@@ -193,14 +193,6 @@ h1 {
   background-color: lightsteelblue;
   border: 2px solid crimson;
 }
-#valueUpgrade {
-  background-color: lightblue;
-  border-radius: 40px;
-  border: 2px solid blue;
-}
-#valueUpgrade:hover {
-  background-color: lightsteelblue;
-}
 
 
 #save {
