@@ -202,14 +202,9 @@ let checkError = function() {
 
 }
 
+
+
 window.onload = loadLocal()
-
-window.addEventListener('storage', () => {
-  window.alert('another window or tab is working on the same localStorage')
-}, false)
-
-localStorage.setItem('Sentinel',Math.random())
-
 
 // ----------------------------------------------------------------------------------
 
