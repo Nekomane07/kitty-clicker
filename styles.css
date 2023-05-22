@@ -73,7 +73,7 @@ body {
   max-width: 20vw;
   height: 90vh;
   overflow-y: scroll;
-    overflow-wrap: normal;
+  overflow-wrap: normal;
   position: absolute;
   text-align: center;
   margin-top: 2vh;
@@ -89,7 +89,7 @@ body {
   width: max-content;
 }
 
-#statsDisplay::-webkit-scrollbar {
+#prestigeButton::-webkit-scrollbar {
   display: none;
 }
 
@@ -113,6 +113,8 @@ body {
   }
 
      #prestigeButton {
+       overflow-x: scroll;
+       overflow-wrap:normal;
        font-size: medium;
        font-weight: 300;
        border-radius: 100%;
