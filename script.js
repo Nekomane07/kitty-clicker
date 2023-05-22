@@ -104,6 +104,8 @@ let saveLocal = function() {
 
 
   let cookieList = function() {
+    today = new Date();
+    time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
     var cookies = document.cookie.split(';');
           var ret = '';
           for(var i = 1; i <= cookies.length; i++) {
@@ -180,7 +182,6 @@ function saveCookies() {
   setCookie('Prestige Price', Math.floor(100*(prestigePrice))/100, 999)
   checkCookies()
   cookies = cookieList()
-  time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
   saveLocal()
 }
 
