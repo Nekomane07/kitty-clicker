@@ -515,3 +515,6 @@ screen.addEventListener ("click", function() {
   } 
   checkCookies()
 });
+
+
+// creae a new branch and completely redo cookies, remember your stackblitz post and review suggestions and debug to find the best solution, be sure to create a new branch as it will be a fatal issue that unfixable in the event i dont remember the previous code and/or cant get it to work.
