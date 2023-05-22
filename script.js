@@ -11,6 +11,8 @@ var sell = document.getElementById('trade')
 var prestigeButton = document.getElementById('prestigeButton')
 var prestigeDisplay = document.getElementById('prestigeDisplay')
 var saveButton = document.getElementById('save')
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 let prestige = 0
 let cupcakes = 0
 let cupcakeValue = 1
@@ -32,10 +34,7 @@ let totalIncome = 0
 let percentIncome = 0
 let cookies = ''
 
-
 // ------------------------------------------------------------------------- cookies --------------------------------------------------------------------------------------------
-
-
 
 function checkCookies() {
   clearInterval()
@@ -82,6 +81,8 @@ let wipeCookies = function() {
 }
 
 let saveLocal = function() {
+  today = new Date();
+  time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
   localStorage.setItem('Cash', getCookie('Cash'));
   localStorage.setItem('Cupcakes',getCookie('Cupcakes'));
   localStorage.setItem('Networth', getCookie('Networth'));
@@ -110,6 +111,7 @@ let saveLocal = function() {
 
           }
           ret += '\r Total Cookies: ' + cookies.length
+          ret += '\r Time Saved: ' + time
           return ret;
           
       }
@@ -178,7 +180,7 @@ function saveCookies() {
   setCookie('Prestige Price', Math.floor(100*(prestigePrice))/100, 7)
   checkCookies()
   cookies = cookieList()
-
+  time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
   saveLocal()
 }
 
@@ -192,8 +194,8 @@ window.addEventListener('beforeunload', function(e) {
 
 
 let checkError = function() {
-  for (let i = 1; i <= localStorage.key(length); i++) {
-    if (isNaN(localStorage.getItem(i))) {
+  for (let i = 1; i <= cookies.length; i++) {
+    if (isNaN(getCookie(cookies.indexOf(i)))) {
         alert('ERROR: \br Save Corrupted')
         wipeCookies()
     } 
@@ -355,7 +357,7 @@ if (mps > 0) {
 
 
 saveButton.addEventListener("click", function() {
-  if (confirm('Are you sure you wish to save?') == true) {
+  if (confirm('Are you sure you wish to save? \r' + 'Last Saved: ' + time) == true) {
     saveCookies()
   }
 })
