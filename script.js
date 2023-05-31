@@ -517,4 +517,4 @@ screen.addEventListener ("click", function() {
 });
 
 
-// creae a new branch and completely redo cookies, remember your stackblitz post and review suggestions and debug to find the best solution, be sure to create a new branch as it will be a fatal issue that unfixable in the event i dont remember the previous code and/or cant get it to work.
+// creae a new branch and completely redo cookies, remember your stackblitz post and review suggestions and debug to find the best solution, be sure to create a new branch as it will be a fatal issue that's unfixable in the event i dont remember the previous code and/or cant get it to work.
